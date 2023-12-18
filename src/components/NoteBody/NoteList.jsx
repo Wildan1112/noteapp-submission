@@ -1,18 +1,20 @@
 import { showFormattedDate } from "../../utils/index";
-const ArchivedNoteList = ({
-  archivedNotes,
+const ActiveNoteList = ({
+  title,
+  titleBtn,
+  notes,
   onDeleteNote,
   onToggleArchivedNote,
 }) => {
   return (
     <>
-      <h2>Arsip</h2>
-      {archivedNotes.length === 0 && (
-        <p className="notes-list__empty-message">Tidak ada catatan arsip</p>
+      <h2>{title}</h2>
+      {notes.length === 0 && (
+        <p className="notes-list__empty-message">Tidak ada catatan</p>
       )}
 
       <div className="notes-list">
-        {archivedNotes.map((note) => (
+        {notes.map((note) => (
           <div className="note-item" key={note.id}>
             <div className="note-item__content">
               <h3 className="note-item__title">{note.title}</h3>
@@ -32,7 +34,7 @@ const ArchivedNoteList = ({
                 className="note-item__archive-button"
                 onClick={() => onToggleArchivedNote(note.id)}
               >
-                Pindahkan
+                {titleBtn}
               </button>
             </div>
           </div>
@@ -41,5 +43,4 @@ const ArchivedNoteList = ({
     </>
   );
 };
-
-export default ArchivedNoteList;
+export default ActiveNoteList;

@@ -1,7 +1,5 @@
 import NoteInputForm from "./NoteInputForm";
-import ActiveNoteList from "./ActiveNoteList";
-
-import ArchivedNoteList from "./ArchivedNoteList";
+import NoteList from "./NoteList";
 
 const NoteBody = ({ notes, onAddNote, onDeleteNote, onToggleArchivedNote }) => {
   const activeNotes = notes.filter((note) => note.archived === false);
@@ -10,13 +8,19 @@ const NoteBody = ({ notes, onAddNote, onDeleteNote, onToggleArchivedNote }) => {
   return (
     <div className="note-app__body">
       <NoteInputForm onAddNote={onAddNote} />
-      <ActiveNoteList
-        activeNotes={activeNotes}
+      {/* Active Notes */}
+      <NoteList
+        title="Catatan Aktif"
+        titleBtn="Arsipkan"
+        notes={activeNotes}
         onDeleteNote={onDeleteNote}
         onToggleArchivedNote={onToggleArchivedNote}
       />
-      <ArchivedNoteList
-        archivedNotes={archivedNotes}
+      {/* Archived Notes */}
+      <NoteList
+        title="Arsip"
+        titleBtn="Pindahkan"
+        notes={archivedNotes}
         onDeleteNote={onDeleteNote}
         onToggleArchivedNote={onToggleArchivedNote}
       />
